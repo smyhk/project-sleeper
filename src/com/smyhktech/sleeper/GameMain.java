@@ -2,6 +2,7 @@ package com.smyhktech.sleeper;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
@@ -43,12 +44,26 @@ public class GameMain extends Canvas implements Runnable {
 
 	public void run() {
 		while (running) {
-			System.out.println("Running!!!");
+			update();
+			render();
 		}
 	}
+
+	private void update() {
+	}
 	
+	private void render() {
+		BufferStrategy bs = getBufferStrategy();
+		if (bs == null) {
+			createBufferStrategy(3);
+			return;
+		}
+	}
+
 	public static void main(String[] args) {
 		GameMain game = new GameMain();
+		
+		// Define game window frame attributes
 		game.frame.setResizable(false);
 		game.frame.setTitle("Sleeper");
 		game.frame.add(game);
@@ -57,6 +72,7 @@ public class GameMain extends Canvas implements Runnable {
 		game.frame.setLocationRelativeTo(null);
 		game.frame.setVisible(true);
 		
+		// Start game thread
 		game.startGame();
 	}
 }
