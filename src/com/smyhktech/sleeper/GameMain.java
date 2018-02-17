@@ -1,7 +1,9 @@
 package com.smyhktech.sleeper;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
@@ -50,6 +52,7 @@ public class GameMain extends Canvas implements Runnable {
 	}
 
 	private void update() {
+		// Coming soon!
 	}
 	
 	private void render() {
@@ -58,6 +61,14 @@ public class GameMain extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
+		
+		Graphics g = bs.getDrawGraphics();  // Creates a graphics context for buffer
+		
+		g.setColor(Color.darkGray);
+		g.fillRect(0, 0, getWidth(), getHeight());
+		
+		g.dispose();
+		bs.show();  // Displays graphics in the buffer to the screen
 	}
 
 	public static void main(String[] args) {
