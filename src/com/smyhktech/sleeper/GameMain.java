@@ -10,6 +10,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.smyhktech.sleeper.graphics.Screen;
+import com.smyhktech.sleeper.input.Keyboard;
 
 public class GameMain extends Canvas implements Runnable {
 	
@@ -23,6 +24,7 @@ public class GameMain extends Canvas implements Runnable {
 	private Thread gameThread;
 	private JFrame frame;
 	private boolean running = false;
+	private Keyboard key;
 	private Screen screen;
 	
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Placeholder for drawing images
@@ -35,6 +37,9 @@ public class GameMain extends Canvas implements Runnable {
 		
 		screen = new Screen(width, height);
 		frame = new JFrame();
+		key = new Keyboard();
+		
+		addKeyListener(key);  // Binds keyboard class
 	}
 	
 	public synchronized void startGame() {
@@ -61,8 +66,8 @@ public class GameMain extends Canvas implements Runnable {
 		final double ns = 1000000000.0 / 60.0;
 		double delta = 0;  // Store change in time between lastTime and now
 		
-		int frames = 0;		// fps counter
-		int updates = 0;		// should be 60 per minute
+		int frames = 0;		// fps accumulator
+		int updates = 0;		// update count accumulator; should be 60 per minute
 		
 		while (running) {
 			long now = System.nanoTime();
@@ -78,7 +83,7 @@ public class GameMain extends Canvas implements Runnable {
 			
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				System.out.println(updates + " ups, " + frames + " fps");
+				// System.out.println(updates + " ups, " + frames + " fps");
 				frame.setTitle(title + " | [fps: " + frames + " ], [ups: " + updates + " ]");
 				
 				// Reset the counters
@@ -90,7 +95,7 @@ public class GameMain extends Canvas implements Runnable {
 	}
 
 	private void update() {
-		// Coming soon!
+		key.update();
 	}
 	
 	private void render() {
