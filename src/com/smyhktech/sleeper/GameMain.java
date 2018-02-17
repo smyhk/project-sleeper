@@ -53,10 +53,24 @@ public class GameMain extends Canvas implements Runnable {
 	}
 
 	public void run() {
+		
+		// Values used for timing
+		long lastTime = System.nanoTime();
+		final double ns = 1000000000.0 / 60.0;
+		double delta = 0;  // Store change in time between lastTime and now
+		
 		while (running) {
-			update();
+			long now = System.nanoTime();
+			lastTime = now;
+			delta += (now - lastTime) / ns;
+			while (delta >= 1) {
+				update();
+				delta--;
+			}
+			
 			render();
 		}
+		stopGame();
 	}
 
 	private void update() {
