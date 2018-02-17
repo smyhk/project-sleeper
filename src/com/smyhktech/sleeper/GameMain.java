@@ -71,7 +71,8 @@ public class GameMain extends Canvas implements Runnable {
 			return;
 		}
 		
-		screen.render();
+		screen.clear();  // Clears the screen before rendering the next image
+		screen.render(); // Draw the image
 		
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
