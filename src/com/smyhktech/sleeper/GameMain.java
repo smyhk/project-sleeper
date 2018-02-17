@@ -10,6 +10,8 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import com.smyhktech.sleeper.graphics.Screen;
+
 public class GameMain extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = 1L;
@@ -21,6 +23,7 @@ public class GameMain extends Canvas implements Runnable {
 	private Thread gameThread;
 	private JFrame frame;
 	private boolean running = false;
+	private Screen screen;
 	
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Placeholder for drawing images
 	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();		  // Draws on the placeholder
@@ -30,6 +33,7 @@ public class GameMain extends Canvas implements Runnable {
 		Dimension size = new Dimension(width * scale, height * scale);
 		setPreferredSize(size);
 		
+		screen = new Screen(width, height);
 		frame = new JFrame();
 	}
 	
@@ -67,11 +71,14 @@ public class GameMain extends Canvas implements Runnable {
 			return;
 		}
 		
+		screen.render();
+		
+		for (int i = 0; i < pixels.length; i++) {
+			pixels[i] = screen.pixels[i];
+		}
+		
 		Graphics g = bs.getDrawGraphics();  // Creates a graphics context for buffer
-		
-		g.setColor(Color.darkGray);
-		g.fillRect(0, 0, getWidth(), getHeight());
-		
+		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.dispose();
 		bs.show();  // Displays graphics in the buffer to the screen
 	}
