@@ -1,7 +1,6 @@
 package com.smyhktech.sleeper;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
