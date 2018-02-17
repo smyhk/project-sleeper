@@ -93,9 +93,16 @@ public class GameMain extends Canvas implements Runnable {
 		}
 		stopGame();
 	}
-
+	
+	int x = 0, y = 0;
 	private void update() {
 		key.update();
+		//x++;
+		//y++;
+		if (key.up) y--;
+		if (key.down) y++;
+		if (key.left) x--;
+		if (key.right) x++;
 	}
 	
 	private void render() {
@@ -106,8 +113,9 @@ public class GameMain extends Canvas implements Runnable {
 		}
 		
 		screen.clear();  // Clears the screen before rendering the next image
-		screen.render(); // Draw the image
+		screen.render(x, y); // Draw the image and store in Screen class pixels array
 		
+		// Copies pixel array from Screen class to this
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
 		}

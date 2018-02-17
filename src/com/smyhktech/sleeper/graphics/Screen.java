@@ -21,6 +21,7 @@ public class Screen {
 		
 		for (int i = 0; i < MAP_SIZE * MAP_SIZE; i++) {
 			tiles[i] = random.nextInt(0xffffff);
+			tiles[0] = 0;
 		}
 	}
 	
@@ -36,15 +37,15 @@ public class Screen {
 	/**
 	 * Draws on the screen
 	 */
-	public void render() {
-		
+	public void render(int xOffset, int yOffset) {
 		for (int y = 0; y < height; y++) {
-			int yy = y;
-			if (yy < 0 || yy >= height) break;
+			int yy = y + yOffset;
+			//if (yy < 0 || yy >= height) break;
 			for (int x = 0; x < width; x++) {
-				int xx = x;
-				if (xx < 0 || xx >= width) break;
-				int tileIndex = (xx / 16) + (yy / 16 ) * MAP_SIZE;  // Bitwise right shift was lower fps
+				int xx = x + xOffset;
+				//if (xx < 0 || xx >= width) break;
+				int tileIndex = ((xx >> 4) & MAP_SIZE_MASK) + ((yy >> 4) & MAP_SIZE_MASK) * MAP_SIZE;
+				// (xx / 16) + (yy / 16 ) * MAP_SIZE;  // Bitwise right shift was lower fps
 				pixels[x + y * width] = tiles[tileIndex];
 			}
 		}
