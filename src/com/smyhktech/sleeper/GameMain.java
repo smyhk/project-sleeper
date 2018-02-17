@@ -18,6 +18,7 @@ public class GameMain extends Canvas implements Runnable {
 	public static int width = 300;			   // Width in pixels
 	public static int height = width / 16 * 9;  // Aspect ratio
 	public static int scale = 3;				   // Scalar for windowing
+	public static String title = "Sleeper";
 	
 	private Thread gameThread;
 	private JFrame frame;
@@ -56,19 +57,34 @@ public class GameMain extends Canvas implements Runnable {
 		
 		// Values used for timing
 		long lastTime = System.nanoTime();
+		long timer = System.currentTimeMillis();
 		final double ns = 1000000000.0 / 60.0;
 		double delta = 0;  // Store change in time between lastTime and now
 		
+		int frames = 0;		// fps counter
+		int updates = 0;		// should be 60 per minute
+		
 		while (running) {
 			long now = System.nanoTime();
-			lastTime = now;
 			delta += (now - lastTime) / ns;
+			lastTime = now;
 			while (delta >= 1) {
 				update();
+				updates++;
 				delta--;
 			}
-			
 			render();
+			frames++;
+			
+			if (System.currentTimeMillis() - timer > 1000) {
+				timer += 1000;
+				System.out.println(updates + " ups, " + frames + " fps");
+				frame.setTitle(title + " | [fps: " + frames + " ], [ups: " + updates + " ]");
+				
+				// Reset the counters
+				updates = 0;
+				frames = 0;
+			}
 		}
 		stopGame();
 	}
@@ -102,7 +118,7 @@ public class GameMain extends Canvas implements Runnable {
 		
 		// Define game window frame attributes
 		game.frame.setResizable(false);
-		game.frame.setTitle("Sleeper");
+		game.frame.setTitle(GameMain.title);
 		game.frame.add(game);
 		game.frame.pack();
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

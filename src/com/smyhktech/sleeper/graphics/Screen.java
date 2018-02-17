@@ -29,7 +29,7 @@ public class Screen {
 	 */
 	public void render() {
 		counter++;
-		if (counter % 10 == 0) xtime--;
+		if (counter % 100 == 0) xtime--;
 		if (counter % 80 == 0) ytime--;
 		
 		for (int y = 0; y < height; y++) {
