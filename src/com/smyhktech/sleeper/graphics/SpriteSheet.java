@@ -10,8 +10,10 @@ import javax.imageio.ImageIO;
 
 public class SpriteSheet {
 	private String path;
-	private int size = 0;
+	public int size = 0;
 	public int[] pixels;
+	
+	public static SpriteSheet tiles = new SpriteSheet("/textures/spritesheet.png", 256);
 	
 	// Constructor
 	public SpriteSheet(String path, int size) {
