@@ -69,6 +69,7 @@ public class GameMain extends Canvas implements Runnable {
 		int frames = 0;		// fps accumulator
 		int updates = 0;		// update count accumulator; should be 60 per minute
 		
+		requestFocus();  // Give focus to game canvas on load
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
