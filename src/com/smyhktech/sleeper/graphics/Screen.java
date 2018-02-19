@@ -11,6 +11,8 @@ public class Screen {
 	public final int MAP_SIZE = 64;
 	public final int MAP_SIZE_MASK = MAP_SIZE - 1;  // For bitwise operations
 	
+	public int xOffset, yOffset;
+	
 	public int[] tiles = new int[MAP_SIZE * MAP_SIZE];
 
 	private Random random = new Random();
@@ -36,27 +38,12 @@ public class Screen {
 		}
 	}
 	
-	/**
-	 * Draws on the screen
-	 */
-	public void render(int xOffset, int yOffset) {
-		for (int y = 0; y < height; y++) {
-			int yp = y + yOffset;
-			if (yp < 0 || yp >= height) continue;
-			for (int x = 0; x < width; x++) {
-				int xp = x + xOffset;
-				if (xp < 0 || xp >= width) continue;
-				// int tileIndex = ((xx >> 4) & MAP_SIZE_MASK) + ((yy >> 4) & MAP_SIZE_MASK) * MAP_SIZE;
-				// (xx / 16) + (yy / 16 ) * MAP_SIZE;  // Bitwise right shift was lower fps
-				pixels[xp + yp * width] = Sprite.grass.pixels[(x&15) + (y&15) * Sprite.grass.size];
-			}
-		}
-	}
-	
 	public void renderTile(int xp, int yp, Tile tile) {
+		xp -= xOffset;
+		yp -= yOffset;
 		for (int y = 0; y < tile.sprite.size; y++) {
 			int yAbs = y + yp;
-			for (int x = 0; x < tile.sprite.size; y++) {
+			for (int x = 0; x < tile.sprite.size; x++) {
 				int xAbs = x + xp;
 				
 				// Render only what needs to be seen on the screen
@@ -64,5 +51,10 @@ public class Screen {
 				pixels[xAbs + yAbs * width] = tile.sprite.pixels[x + y * tile.sprite.size];
 			}
 		}
+	}
+	
+	public void setOffset(int xOffset, int yOffset) {
+		this.xOffset = xOffset;
+		this.yOffset = yOffset;
 	}
 }

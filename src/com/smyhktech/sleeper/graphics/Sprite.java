@@ -12,6 +12,7 @@ public class Sprite {
 	public int[] pixels;
 	
 	public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.tiles);
+	public static Sprite voidSprite = new Sprite(16, 0);  // Essentially a blank sprite for blank tiles
 
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		this.size = size;
@@ -22,6 +23,18 @@ public class Sprite {
 
 		this.sheet = sheet;
 		loadSprite();
+	}
+	
+	public Sprite(int size, int color) {
+		this.size = size;
+		pixels = new int[size * size];
+		setColor(color);
+	}
+	
+	private void setColor(int color) {
+		for (int i = 0; i < size * size; i++) {
+			pixels[i] = color;
+		}
 	}
 
 	private void loadSprite() {

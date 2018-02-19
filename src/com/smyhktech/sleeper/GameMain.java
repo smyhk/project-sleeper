@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.input.Keyboard;
+import com.smyhktech.sleeper.level.Level;
+import com.smyhktech.sleeper.level.RandomLevel;
 
 public class GameMain extends Canvas implements Runnable {
 	
@@ -25,6 +27,7 @@ public class GameMain extends Canvas implements Runnable {
 	private JFrame frame;
 	private boolean running = false;
 	private Keyboard key;
+	private Level level;
 	private Screen screen;
 	
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Placeholder for drawing images
@@ -38,6 +41,7 @@ public class GameMain extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
+		level = new RandomLevel(64, 64);
 		
 		addKeyListener(key);  // Binds keyboard class
 	}
@@ -114,8 +118,7 @@ public class GameMain extends Canvas implements Runnable {
 		}
 		
 		screen.clear();  // Clears the screen before rendering the next image
-		screen.render(x, y); // Draw the image and store in Screen class pixels array
-		
+		level.render(x, y, screen);
 		// Copies pixel array from Screen class to this
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
