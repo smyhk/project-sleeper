@@ -2,6 +2,8 @@ package com.smyhktech.sleeper.graphics;
 
 import java.util.Random;
 
+import com.smyhktech.sleeper.level.tile.Tile;
+
 public class Screen {
 
 	private int width, height;
@@ -47,6 +49,19 @@ public class Screen {
 				// int tileIndex = ((xx >> 4) & MAP_SIZE_MASK) + ((yy >> 4) & MAP_SIZE_MASK) * MAP_SIZE;
 				// (xx / 16) + (yy / 16 ) * MAP_SIZE;  // Bitwise right shift was lower fps
 				pixels[xp + yp * width] = Sprite.grass.pixels[(x&15) + (y&15) * Sprite.grass.size];
+			}
+		}
+	}
+	
+	public void renderTile(int xp, int yp, Tile tile) {
+		for (int y = 0; y < tile.sprite.size; y++) {
+			int yAbs = y + yp;
+			for (int x = 0; x < tile.sprite.size; y++) {
+				int xAbs = x + xp;
+				
+				// Render only what needs to be seen on the screen
+				if (xAbs < 0 || xAbs >= width || yAbs < 0 || yAbs >= width) break;
+				pixels[xAbs + yAbs * width] = tile.sprite.pixels[x + y * tile.sprite.size];
 			}
 		}
 	}
