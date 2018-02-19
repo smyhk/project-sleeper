@@ -47,7 +47,8 @@ public class Screen {
 				int xAbs = x + xp;
 				
 				// Render only what needs to be seen on the screen
-				if (xAbs < 0 || xAbs >= width || yAbs < 0 || yAbs >= width) break;
+				if (xAbs < -tile.sprite.size || xAbs >= width || yAbs < 0 || yAbs >= height) break;
+				if (xAbs < 0) xAbs = 0; // Prevent crash for partial tiles
 				pixels[xAbs + yAbs * width] = tile.sprite.pixels[x + y * tile.sprite.size];
 			}
 		}
