@@ -13,10 +13,10 @@ public class Sprite {
 	
 	public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 0);  // Essentially a blank sprite for blank tiles
-	public static Sprite player = new Sprite(16, 0, 1, SpriteSheet.tiles);
+	//public static Sprite player = new Sprite(16, 0, 1, SpriteSheet.tiles);
 	
 	// How to define a larger sprite
-	// public static Sprite player = new Sprite(32, 0, 5, Spritesheet.sheet)  Count be 32 pixel vice 16
+	public static Sprite player = new Sprite(32, 0, 1, SpriteSheet.tiles);
 
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		this.size = size;

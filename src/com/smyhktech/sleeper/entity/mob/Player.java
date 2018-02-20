@@ -7,7 +7,7 @@ import com.smyhktech.sleeper.input.Keyboard;
 public class Player extends Mob {
 	
 	private Keyboard input;
-	public static int pixelSize = 16;
+	public static int pixelSize = 32;
 
 	public Player(Keyboard input) {
 		this.input = input;
@@ -30,6 +30,6 @@ public class Player extends Mob {
 	}
 	
 	public void render(Screen screen) {
-		screen.renderPlayer(x, y, Sprite.player);
+		screen.renderPlayer(x - 16, y - 16, Sprite.player);
 	}
 }

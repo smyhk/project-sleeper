@@ -13,7 +13,7 @@ public class SpriteSheet {
 	public int size = 0;
 	public int[] pixels;
 	
-	public static SpriteSheet tiles = new SpriteSheet("/textures/spritesheet.png", 256);
+	public static SpriteSheet tiles = new SpriteSheet("/textures/spritesheet.png", 384);  // TODO: move sprite sheet width to variable
 	
 	// Constructor
 	public SpriteSheet(String path, int size) {
