@@ -1,7 +1,9 @@
 package com.smyhktech.sleeper;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -9,6 +11,7 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import com.smyhktech.sleeper.entity.mob.Player;
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.input.Keyboard;
 import com.smyhktech.sleeper.level.Level;
@@ -25,9 +28,11 @@ public class GameMain extends Canvas implements Runnable {
 	
 	private Thread gameThread;
 	private JFrame frame;
-	private boolean running = false;
 	private Keyboard key;
 	private Level level;
+	private Player player;
+	private boolean running = false;
+	
 	private Screen screen;
 	
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Placeholder for drawing images
@@ -42,6 +47,7 @@ public class GameMain extends Canvas implements Runnable {
 		frame = new JFrame();
 		key = new Keyboard();
 		level = new RandomLevel(64, 64);
+		player = new Player(key);
 		
 		addKeyListener(key);  // Binds keyboard class
 	}
@@ -99,15 +105,9 @@ public class GameMain extends Canvas implements Runnable {
 		stopGame();
 	}
 	
-	int x = 0, y = 0;
 	private void update() {
 		key.update();
-		//x++;
-		//y++;
-		if (key.up) y--;
-		if (key.down) y++;
-		if (key.left) x--;
-		if (key.right) x++;
+		player.update();
 	}
 	
 	private void render() {
@@ -118,7 +118,7 @@ public class GameMain extends Canvas implements Runnable {
 		}
 		
 		screen.clear();  // Clears the screen before rendering the next image
-		level.render(x, y, screen);
+		level.render(player.x, player.y, screen);
 		// Copies pixel array from Screen class to this
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
@@ -126,6 +126,13 @@ public class GameMain extends Canvas implements Runnable {
 		
 		Graphics g = bs.getDrawGraphics();  // Creates a graphics context for buffer
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		
+		// player movement debugging stuff
+		g.setColor(Color.CYAN);
+		g.setFont(new Font("Veranda", 0, 50));
+		g.drawString("X: " + player.x + ", y: " + player.y, 350, 300);
+		// ================================
+		
 		g.dispose();
 		bs.show();  // Displays graphics in the buffer to the screen
 	}
