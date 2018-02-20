@@ -118,7 +118,11 @@ public class GameMain extends Canvas implements Runnable {
 		}
 		
 		screen.clear();  // Clears the screen before rendering the next image
-		level.render(player.x, player.y, screen);
+		int xScroll = player.x - screen.width / 2;
+		int yScroll = player.y - screen.height / 2;
+		level.render(xScroll, yScroll, screen);
+		player.render(screen);
+		
 		// Copies pixel array from Screen class to this
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
@@ -128,9 +132,9 @@ public class GameMain extends Canvas implements Runnable {
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		
 		// player movement debugging stuff
-		g.setColor(Color.CYAN);
-		g.setFont(new Font("Veranda", 0, 50));
-		g.drawString("X: " + player.x + ", y: " + player.y, 350, 300);
+//		g.setColor(Color.CYAN);
+//		g.setFont(new Font("Veranda", 0, 50));
+//		g.drawString("X: " + player.x + ", y: " + player.y, 350, 300);
 		// ================================
 		
 		g.dispose();

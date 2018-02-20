@@ -13,6 +13,7 @@ public class Sprite {
 	
 	public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 0);  // Essentially a blank sprite for blank tiles
+	public static Sprite player = new Sprite(16, 0, 1, SpriteSheet.tiles);
 
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		this.size = size;

@@ -1,5 +1,7 @@
 package com.smyhktech.sleeper.entity.mob;
 
+import com.smyhktech.sleeper.graphics.Screen;
+import com.smyhktech.sleeper.graphics.Sprite;
 import com.smyhktech.sleeper.input.Keyboard;
 
 public class Player extends Mob {
@@ -17,7 +19,7 @@ public class Player extends Mob {
 	}
 	
 	public void update() {
-		int xa = 0, ya = 0;
+		int xa = 0, ya = 0;  // Direction of movement
 		if (input.up) ya--;
 		if (input.down) ya++;
 		if (input.left) xa--;
@@ -26,7 +28,7 @@ public class Player extends Mob {
 		if (xa != 0 || ya != 0) move(xa, ya);
 	}
 	
-	public void render() {
-		
+	public void render(Screen screen) {
+		screen.renderPlayer(x, y, Sprite.player);
 	}
 }
