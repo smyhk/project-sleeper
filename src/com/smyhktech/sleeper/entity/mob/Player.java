@@ -7,6 +7,7 @@ import com.smyhktech.sleeper.input.Keyboard;
 public class Player extends Mob {
 	
 	private Keyboard input;
+	public static int pixelSize = 16;
 
 	public Player(Keyboard input) {
 		this.input = input;

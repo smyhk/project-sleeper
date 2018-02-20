@@ -2,6 +2,7 @@ package com.smyhktech.sleeper.graphics;
 
 import java.util.Random;
 
+import com.smyhktech.sleeper.entity.mob.Player;
 import com.smyhktech.sleeper.level.tile.Tile;
 
 public class Screen {
@@ -53,19 +54,19 @@ public class Screen {
 			}
 		}
 	}
-	
+
 	public void renderPlayer(int xp, int yp, Sprite sprite) {
 		xp -= xOffset;
 		yp -= yOffset;
-		for (int y = 0; y < 16; y++) {
+		for (int y = 0; y < Player.pixelSize; y++) {
 			int yAbs = y + yp;
-			for (int x = 0; x < 16; x++) {
+			for (int x = 0; x < Player.pixelSize; x++) {
 				int xAbs = x + xp;
 				
 				// Render only what needs to be seen on the screen
-				if (xAbs < -16 || xAbs >= width || yAbs < 0 || yAbs >= height) break;
+				if (xAbs < -Player.pixelSize || xAbs >= width || yAbs < 0 || yAbs >= height) break;
 				if (xAbs < 0) xAbs = 0; // Prevent crash for partial tiles
-				int col = sprite.pixels[x + y * 16];
+				int col = sprite.pixels[x + y * Player.pixelSize];
 				if (col != 0xffff00ff) pixels[xAbs + yAbs * width] = col;  // Do not render sprite background color; note the ff after 0x
 			}
 		}
