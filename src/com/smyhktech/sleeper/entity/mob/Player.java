@@ -14,13 +14,14 @@ public class Player extends Mob {
 
 	public Player(Keyboard input) {
 		this.input = input;
-		sprite = Sprite.playerBack0;  // Set and initial direction for the player sprite
+		sprite = Sprite.playerBack0;  // Set an initial direction for the player sprite
 	}
 
 	public Player(int x, int y, Keyboard input) {
 		this.x = x;
 		this.y = y;
 		this.input = input;
+		sprite = Sprite.playerBack0;  // Set an initial direction for the player sprite
 	}
 	
 	public void update() {

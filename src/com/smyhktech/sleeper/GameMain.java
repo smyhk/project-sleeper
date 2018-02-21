@@ -1,9 +1,7 @@
 package com.smyhktech.sleeper;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -15,7 +13,7 @@ import com.smyhktech.sleeper.entity.mob.Player;
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.input.Keyboard;
 import com.smyhktech.sleeper.level.Level;
-import com.smyhktech.sleeper.level.RandomLevel;
+import com.smyhktech.sleeper.level.SpawnLevel;
 
 public class GameMain extends Canvas implements Runnable {
 	
@@ -46,8 +44,8 @@ public class GameMain extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		level = new RandomLevel(64, 64);
-		player = new Player(key);
+		level = new SpawnLevel("/textures/level.png");
+		player = new Player(70, 50, key);  // TODO: figure out why null pointer exception when specifying x,y spawn point
 		
 		addKeyListener(key);  // Binds keyboard class
 	}
