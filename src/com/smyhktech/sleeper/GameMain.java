@@ -44,7 +44,7 @@ public class GameMain extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		level = new SpawnLevel("/textures/level.png");
+		level = new SpawnLevel("/textures/levels/level.png");
 		player = new Player(70, 50, key);  // TODO: figure out why null pointer exception when specifying x,y spawn point
 		
 		addKeyListener(key);  // Binds keyboard class
