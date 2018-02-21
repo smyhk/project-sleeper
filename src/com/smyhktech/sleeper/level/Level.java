@@ -8,6 +8,8 @@ public class Level {
 	protected int width, height;
 	protected int[] tilesInt; // Store tile id's
 	protected int[] tiles;  // Store pixel colors used to generate tiles
+	
+	public static Level spawn = new SpawnLevel("/levels/spawn.png");
 
 	public Level(int width, int height) {
 		this.width = width;
@@ -57,9 +59,12 @@ public class Level {
 		// Prevent crash when tiles index is < 0 or exceed map dimensions
 		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.voidTile;
 		
-		if (tiles[x + y * width] == 0xff00ff00) return Tile.grass;
-		if (tiles[x + y * width] == 0xffffff00) return Tile.flower;
-		if (tiles[x + y * width] == 0xff7f7f00) return Tile.rock;
+		if (tiles[x + y * width] == Tile.colorSpawnFloor) return Tile.spawnFloor;
+		if (tiles[x + y * width] == Tile.colorSpawnGrass) return Tile.spawnGrass;
+		if (tiles[x + y * width] == Tile.colorSpawnColoredBrick) return Tile.spawnColoredBrick;
+		if (tiles[x + y * width] == Tile.colorSpawnGrayBrick) return Tile.spawnGrayBrick;
+		if (tiles[x + y * width] == Tile.colorSpawnHedge) return Tile.spawnHedge;
+		if (tiles[x + y * width] == Tile.colorSpawnMediumWater) return Tile.spawnMediumWater;
 		return Tile.voidTile;
 		
 	}

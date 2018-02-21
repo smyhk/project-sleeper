@@ -28,6 +28,14 @@ public class Tile {
 	public static Tile spawnColoredBrick = new SpawnColoredBrickTile(Sprite.spawnColoredBrick);
 	public static Tile spawnFloor = new SpawnFloorTile(Sprite.spawnFloor);
 	
+	// Spawn map colors
+	public static final int colorSpawnGrass = 0xff66c666;
+	public static final int colorSpawnHedge = 0;
+	public static final int colorSpawnMediumWater = 0;
+	public static final int colorSpawnGrayBrick = 0xff9a9797;
+	public static final int colorSpawnColoredBrick = 0xff252d30;
+	public static final int colorSpawnFloor = 0xff84502c;
+	
 	public Tile(Sprite sprite) {
 		this.sprite = sprite;
 	}

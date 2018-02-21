@@ -22,7 +22,7 @@ public class Sprite {
 	public static Sprite spawnHedge = new Sprite(16, 1, 0, SpriteSheet.spawnLevel);
 	public static Sprite spawnMediumWater = new Sprite(16, 2, 0, SpriteSheet.spawnLevel);
 	public static Sprite spawnGrayBrick = new Sprite(16, 0, 1, SpriteSheet.spawnLevel);
-	public static Sprite spawnColoredBrick = new Sprite(16, 0, 1, SpriteSheet.spawnLevel);
+	public static Sprite spawnColoredBrick = new Sprite(16, 0, 2, SpriteSheet.spawnLevel);
 	public static Sprite spawnFloor = new Sprite(16, 1, 1, SpriteSheet.spawnLevel);
 	
 	// Player sprites; note larger sprite size
