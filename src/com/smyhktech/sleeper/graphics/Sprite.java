@@ -16,7 +16,14 @@ public class Sprite {
 	public static Sprite flower = new Sprite(16, 1, 0, SpriteSheet.tiles);
 	public static Sprite rock = new Sprite(16, 2, 0, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 0);  // Essentially a blank sprite for blank tiles
-	//public static Sprite player = new Sprite(16, 0, 1, SpriteSheet.tiles);
+	
+	// Spawn level sprites here:
+	public static Sprite spawnGrass = new Sprite(16, 0, 0, SpriteSheet.spawnLevel);
+	public static Sprite spawnHedge = new Sprite(16, 1, 0, SpriteSheet.spawnLevel);
+	public static Sprite spawnMediumWater = new Sprite(16, 2, 0, SpriteSheet.spawnLevel);
+	public static Sprite spawnGrayBrick = new Sprite(16, 0, 1, SpriteSheet.spawnLevel);
+	public static Sprite spawnColoredBrick = new Sprite(16, 0, 1, SpriteSheet.spawnLevel);
+	public static Sprite spawnFloor = new Sprite(16, 1, 1, SpriteSheet.spawnLevel);
 	
 	// Player sprites; note larger sprite size
 	public static Sprite playerForward6 = new Sprite(32, 6, 1, SpriteSheet.tiles);
@@ -46,6 +53,7 @@ public class Sprite {
 		loadSprite();
 	}
 	
+	// Constructor for void sprite
 	public Sprite(int size, int color) {
 		this.size = size;
 		pixels = new int[size * size];
