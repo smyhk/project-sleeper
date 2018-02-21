@@ -11,11 +11,14 @@ public class Sprite {
 	private int x, y;
 	public int[] pixels;
 	
+	// Map tile sprites
 	public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.tiles);
+	public static Sprite flower = new Sprite(16, 1, 0, SpriteSheet.tiles);
+	public static Sprite rock = new Sprite(16, 2, 0, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 0);  // Essentially a blank sprite for blank tiles
 	//public static Sprite player = new Sprite(16, 0, 1, SpriteSheet.tiles);
 	
-	// Note larger sprite size
+	// Player sprites; note larger sprite size
 	public static Sprite playerForward6 = new Sprite(32, 6, 1, SpriteSheet.tiles);
 	public static Sprite playerForward7 = new Sprite(32, 7, 1, SpriteSheet.tiles);
 	public static Sprite playerForward8 = new Sprite(32, 8, 1, SpriteSheet.tiles);
