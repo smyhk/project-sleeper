@@ -39,4 +39,8 @@ public class Tile {
 	public boolean solid() {
 		return false;
 	}
+	
+	public boolean breakable() {
+		return false;
+	}
 }

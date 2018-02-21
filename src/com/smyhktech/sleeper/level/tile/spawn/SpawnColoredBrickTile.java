@@ -15,4 +15,8 @@ public class SpawnColoredBrickTile extends Tile {
 		// Bitwise shift to convert back to pixel precision
 		screen.renderTile(x << 4, y << 4, this);
 	}
+	
+	public boolean solid() {
+		return true;
+	}
 }
