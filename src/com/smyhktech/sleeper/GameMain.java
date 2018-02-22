@@ -2,6 +2,7 @@ package com.smyhktech.sleeper;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -12,6 +13,7 @@ import javax.swing.JFrame;
 import com.smyhktech.sleeper.entity.mob.Player;
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.input.Keyboard;
+import com.smyhktech.sleeper.input.Mouse;
 import com.smyhktech.sleeper.level.Level;
 import com.smyhktech.sleeper.level.TileCoordinate;
 
@@ -50,6 +52,13 @@ public class GameMain extends Canvas implements Runnable {
 		player.init(level);
 		
 		addKeyListener(key);  // Binds keyboard class
+		
+		/*
+		 * Bind mouse object to canvas
+		 */
+		Mouse mouse = new Mouse();
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
 	}
 	
 	public synchronized void startGame() {
@@ -133,10 +142,12 @@ public class GameMain extends Canvas implements Runnable {
 		
 		// player movement debugging stuff
 //		g.setColor(Color.CYAN);
-//		g.setFont(new Font("Veranda", 0, 50));
+		g.setFont(new Font("Veranda", 0, 50));
 //		g.drawString("X: " + player.x + ", y: " + player.y, 350, 300);
 		// ================================
 		
+		g.fillRect(Mouse.getX() - 8, Mouse.getY() - 8, 16, 16);
+		if (Mouse.getButton() != -1) g.drawString("Button: " + Mouse.getButton(), 80, 80);  // test for button press
 		g.dispose();
 		bs.show();  // Displays graphics in the buffer to the screen
 	}
