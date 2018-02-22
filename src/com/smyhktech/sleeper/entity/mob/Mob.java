@@ -35,7 +35,12 @@ public abstract class Mob extends Entity {
 	
 	public boolean collision(int xa, int ya) {
 		boolean solid = false;
-		if (level.getTile((x + xa) >> 4, (y + ya) >> 4).solid()) solid = true; // Convert to tile precision (from pixel)
+		// Tests for any corner being a solid tile
+		for (int c = 0; c < 4; c++) {
+			int xt = ((x + xa) + c % 2 * 14 - 8) >> 4;
+			int yt = ((y + ya) + c / 2 * 12 + 3) >> 4;
+			if (level.getTile(xt, yt).solid()) solid = true; // Convert to tile precision (from pixel)
+		}
 		return solid;
 	}
 	
