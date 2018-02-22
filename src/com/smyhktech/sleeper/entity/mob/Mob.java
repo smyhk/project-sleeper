@@ -1,6 +1,11 @@
 package com.smyhktech.sleeper.entity.mob;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.smyhktech.sleeper.entity.Entity;
+import com.smyhktech.sleeper.entity.projectile.BoltProjectile;
+import com.smyhktech.sleeper.entity.projectile.Projectile;
 import com.smyhktech.sleeper.graphics.Sprite;
 
 public abstract class Mob extends Entity {
@@ -8,6 +13,7 @@ public abstract class Mob extends Entity {
 	protected Sprite sprite;
 	protected int dir = -1;
 	protected boolean moving = false;
+	protected List<Projectile> projectiles = new ArrayList<>();
 	
 	public void move(int xa, int ya) {
 		
@@ -34,8 +40,10 @@ public abstract class Mob extends Entity {
 	}
 	
 	protected void shoot(int x, int y, double direction) {
-		// direction *= 180 / Math.PI; conver to degrees
-		System.out.println("Angle: " + direction);
+		//direction *= 180 / Math.PI;  // Convert to degrees
+		Projectile p = new BoltProjectile(x, y, direction);
+		projectiles.add(p);
+		level.add(p);
 	}
 	
 	public boolean collision(int xa, int ya) {

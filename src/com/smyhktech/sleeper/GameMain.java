@@ -126,6 +126,7 @@ public class GameMain extends Canvas implements Runnable {
 	private void update() {
 		key.update();
 		player.update();
+		level.update();
 	}
 	
 	private void render() {

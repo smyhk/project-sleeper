@@ -54,6 +54,22 @@ public class Screen {
 			}
 		}
 	}
+	
+	public void renderTile(int xp, int yp, Sprite sprite) {
+		xp -= xOffset;
+		yp -= yOffset;
+		for (int y = 0; y < sprite.size; y++) {
+			int yAbs = y + yp;
+			for (int x = 0; x < sprite.size; x++) {
+				int xAbs = x + xp;
+				
+				// Render only what needs to be seen on the screen
+				if (xAbs < -sprite.size || xAbs >= width || yAbs < 0 || yAbs >= height) break;
+				if (xAbs < 0) xAbs = 0; // Prevent crash for partial tiles
+				pixels[xAbs + yAbs * width] = sprite.pixels[x + y * sprite.size];
+			}
+		}
+	}
 
 	public void renderPlayer(int xp, int yp, Sprite sprite) {
 		xp -= xOffset;
