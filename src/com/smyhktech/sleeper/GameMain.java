@@ -13,6 +13,7 @@ import com.smyhktech.sleeper.entity.mob.Player;
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.input.Keyboard;
 import com.smyhktech.sleeper.level.Level;
+import com.smyhktech.sleeper.level.TileCoordinate;
 
 public class GameMain extends Canvas implements Runnable {
 	
@@ -44,7 +45,8 @@ public class GameMain extends Canvas implements Runnable {
 		frame = new JFrame();
 		key = new Keyboard();
 		level = Level.spawn;
-		player = new Player(23 * 16, 59 * 16, key);
+		TileCoordinate playerSpawn = new TileCoordinate(23, 59);
+		player = new Player(playerSpawn.getX(), playerSpawn.getY(), key);
 		
 		addKeyListener(key);  // Binds keyboard class
 	}
