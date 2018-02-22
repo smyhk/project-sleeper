@@ -47,6 +47,7 @@ public class GameMain extends Canvas implements Runnable {
 		level = Level.spawn;
 		TileCoordinate playerSpawn = new TileCoordinate(23, 59);
 		player = new Player(playerSpawn.getX(), playerSpawn.getY(), key);
+		player.init(level);
 		
 		addKeyListener(key);  // Binds keyboard class
 	}
