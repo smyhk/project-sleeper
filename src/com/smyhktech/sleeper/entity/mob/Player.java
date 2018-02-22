@@ -1,8 +1,10 @@
 package com.smyhktech.sleeper.entity.mob;
 
+import com.smyhktech.sleeper.GameMain;
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.graphics.Sprite;
 import com.smyhktech.sleeper.input.Keyboard;
+import com.smyhktech.sleeper.input.Mouse;
 
 public class Player extends Mob {
 	
@@ -44,8 +46,19 @@ public class Player extends Mob {
 		} else {
 			walking = false;
 		}
+		
+		updateShooting();
 	}
 	
+	private void updateShooting() {
+		if (Mouse.getButton() == 1) {
+			double dx = Mouse.getX() - GameMain.getWindowWidth() / 2;
+			double dy = Mouse.getY() - GameMain.getWindowHeight() / 2;
+			double dir = Math.atan2(dy, dx); // calculate direction using tangent
+			shoot(x, y, dir);
+		}
+	}
+
 	public void render(Screen screen) {
 		if (dir == 0) {
 			sprite = Sprite.playerForward6;

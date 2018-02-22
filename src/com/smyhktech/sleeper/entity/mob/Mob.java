@@ -33,6 +33,11 @@ public abstract class Mob extends Entity {
 		
 	}
 	
+	protected void shoot(int x, int y, double direction) {
+		// direction *= 180 / Math.PI; conver to degrees
+		System.out.println("Angle: " + direction);
+	}
+	
 	public boolean collision(int xa, int ya) {
 		boolean solid = false;
 		// Tests for any corner being a solid tile
@@ -47,4 +52,5 @@ public abstract class Mob extends Entity {
 	public void render() {
 		
 	}
+	
 }

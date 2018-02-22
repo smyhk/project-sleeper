@@ -1,6 +1,7 @@
 package com.smyhktech.sleeper;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -21,10 +22,10 @@ public class GameMain extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public static int width = 300;			   // Width in pixels
-	public static int height = width / 16 * 9;  // Aspect ratio
-	public static int scale = 3;				   // Scalar for windowing
-	public static String title = "Sleeper";
+	private static int width = 300;			   // Width in pixels
+	private static int height = width / 16 * 9;  // Aspect ratio
+	private static int scale = 3;				   // Scalar for windowing
+	private static String title = "Sleeper";
 	
 	private Thread gameThread;
 	private JFrame frame;
@@ -59,6 +60,14 @@ public class GameMain extends Canvas implements Runnable {
 		Mouse mouse = new Mouse();
 		addMouseListener(mouse);
 		addMouseMotionListener(mouse);
+	}
+	
+	public static int getWindowWidth() {
+		return width * scale;
+	}
+	
+	public static int getWindowHeight() {
+		return height * scale;
 	}
 	
 	public synchronized void startGame() {
@@ -140,14 +149,14 @@ public class GameMain extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();  // Creates a graphics context for buffer
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		
-		// player movement debugging stuff
-//		g.setColor(Color.CYAN);
+		// player mouse and movement debugging stuff
+		g.setColor(Color.CYAN);
 		g.setFont(new Font("Veranda", 0, 50));
 //		g.drawString("X: " + player.x + ", y: " + player.y, 350, 300);
 		// ================================
 		
-		g.fillRect(Mouse.getX() - 8, Mouse.getY() - 8, 16, 16);
-		if (Mouse.getButton() != -1) g.drawString("Button: " + Mouse.getButton(), 80, 80);  // test for button press
+		//g.fillRect(Mouse.getX() - 8, Mouse.getY() - 8, 16, 16);
+		//if (Mouse.getButton() != -1) g.drawString("Button: " + Mouse.getButton(), 80, 80);  // test for button press
 		g.dispose();
 		bs.show();  // Displays graphics in the buffer to the screen
 	}
