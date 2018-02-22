@@ -15,6 +15,7 @@ public class SpriteSheet {
 	
 	public static SpriteSheet tiles = new SpriteSheet("/textures/sheets/spritesheet.png", 384);  // TODO: move sprite sheet width to variable
 	public static SpriteSheet spawnLevel = new SpriteSheet("/textures/sheets/spawnlevel.png", 48);
+	public static SpriteSheet boltProjectile = new SpriteSheet("/textures/projectiles/boltProjectile.png", 48);
 	
 	// Constructor
 	public SpriteSheet(String path, int size) {

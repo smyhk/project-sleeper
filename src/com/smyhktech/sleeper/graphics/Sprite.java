@@ -41,6 +41,9 @@ public class Sprite {
 	public static Sprite playerRight3 = new Sprite(32, 3, 1, SpriteSheet.tiles);
 	public static Sprite playerRight4 = new Sprite(32, 4, 1, SpriteSheet.tiles);
 	public static Sprite playerRight5 = new Sprite(32, 5, 1, SpriteSheet.tiles);
+	
+	// Projectile sprites
+	public static Sprite boltProjectile = new Sprite(16, 0, 0, SpriteSheet.boltProjectile);
 
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		this.size = size;

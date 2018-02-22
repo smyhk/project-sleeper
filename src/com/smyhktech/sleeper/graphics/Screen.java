@@ -3,6 +3,7 @@ package com.smyhktech.sleeper.graphics;
 import java.util.Random;
 
 import com.smyhktech.sleeper.entity.mob.Player;
+import com.smyhktech.sleeper.entity.projectile.Projectile;
 import com.smyhktech.sleeper.level.tile.Tile;
 
 public class Screen {
@@ -55,18 +56,19 @@ public class Screen {
 		}
 	}
 	
-	public void renderTile(int xp, int yp, Sprite sprite) {
+	public void renderProjectile(int xp, int yp, Projectile p) {
 		xp -= xOffset;
 		yp -= yOffset;
-		for (int y = 0; y < sprite.size; y++) {
+		for (int y = 0; y < p.getSpriteSize(); y++) {
 			int yAbs = y + yp;
-			for (int x = 0; x < sprite.size; x++) {
+			for (int x = 0; x < p.getSpriteSize(); x++) {
 				int xAbs = x + xp;
 				
 				// Render only what needs to be seen on the screen
-				if (xAbs < -sprite.size || xAbs >= width || yAbs < 0 || yAbs >= height) break;
+				if (xAbs < -p.getSpriteSize() || xAbs >= width || yAbs < 0 || yAbs >= height) break;
 				if (xAbs < 0) xAbs = 0; // Prevent crash for partial tiles
-				pixels[xAbs + yAbs * width] = sprite.pixels[x + y * sprite.size];
+				int col = p.getSprite().pixels[x + y * p.getSprite().size];
+				if (col != 0xffff00ff) pixels[xAbs + yAbs * width] = col;
 			}
 		}
 	}

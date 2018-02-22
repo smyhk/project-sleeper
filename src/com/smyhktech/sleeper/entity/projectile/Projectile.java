@@ -19,6 +19,14 @@ public abstract class Projectile extends Entity {
 		angle = dir;
 	}
 	
+	public Sprite getSprite() {
+		return sprite;
+	}
+	
+	public int getSpriteSize() {
+		return sprite.size;
+	}
+	
 	protected void move() {
 		
 	}

@@ -11,7 +11,7 @@ public class BoltProjectile extends Projectile {
 		speed = 4;
 		damage = 20;
 		rateOfFire = 15;
-		sprite = Sprite.grass;
+		sprite = Sprite.boltProjectile;
 		
 		nx = speed * Math.cos(angle);  // Vector for animating projectile
 		ny = speed * Math.sin(angle);  //
@@ -27,6 +27,6 @@ public class BoltProjectile extends Projectile {
 	}
 	
 	public void render(Screen screen) {
-		screen.renderTile(x, y, sprite);
+		screen.renderProjectile(x, y, this);
 	}
 }
