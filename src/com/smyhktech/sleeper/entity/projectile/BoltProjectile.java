@@ -11,10 +11,10 @@ public class BoltProjectile extends Projectile {
 
 	public BoltProjectile(int x, int y, double dir) {
 		super(x, y, dir);
-		range = 75;  // Could be randomized for effect
-		speed = 2;
+		range = 200;  // Could be randomized for effect
+		speed = 4;
 		damage = 20;
-		rateOfFire = 15;
+		rateOfFire = 10; // Higher the number, slower the render
 		sprite = Sprite.boltProjectile;
 		
 		nx = speed * Math.cos(angle);  // Vector math for animating projectile

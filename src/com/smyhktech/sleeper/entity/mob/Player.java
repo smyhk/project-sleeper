@@ -1,6 +1,7 @@
 package com.smyhktech.sleeper.entity.mob;
 
 import com.smyhktech.sleeper.GameMain;
+import com.smyhktech.sleeper.entity.projectile.BoltProjectile;
 import com.smyhktech.sleeper.entity.projectile.Projectile;
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.graphics.Sprite;
@@ -13,8 +14,9 @@ public class Player extends Mob {
 	private Sprite sprite;
 	private int animate = 0;  // Animation counter
 	private boolean walking = false;
+	private int fireRate;
 	public static int pixelSize = 32;
-
+	
 	public Player(Keyboard input) {
 		this.input = input;
 		sprite = Sprite.playerBack0;  // Set an initial direction for the player sprite
@@ -25,9 +27,11 @@ public class Player extends Mob {
 		this.y = y;
 		this.input = input;
 		sprite = Sprite.playerBack0;  // Set an initial direction for the player sprite
+		fireRate = BoltProjectile.getRateOfFire();
 	}
 	
 	public void update() {
+		if (fireRate > 0) fireRate--;
 		int xa = 0, ya = 0;  // Direction of movement
 		
 		if (animate < 7500) {
@@ -53,11 +57,12 @@ public class Player extends Mob {
 	}
 	
 	private void updateShooting() {
-		if (Mouse.getButton() == 1) {
+		if (Mouse.getButton() == 1 && fireRate <= 0){
 			double dx = Mouse.getX() - GameMain.getWindowWidth() / 2;
 			double dy = Mouse.getY() - GameMain.getWindowHeight() / 2;
 			double dir = Math.atan2(dy, dx); // calculate direction using tangent
 			shoot(x, y, dir);
+			fireRate = BoltProjectile.getRateOfFire();
 		}
 	}
 	
