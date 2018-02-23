@@ -13,7 +13,7 @@ public class BoltProjectile extends Projectile {
 		rateOfFire = 15;
 		sprite = Sprite.boltProjectile;
 		
-		nx = speed * Math.cos(angle);  // Vector for animating projectile
+		nx = speed * Math.cos(angle);  // Vector math for animating projectile
 		ny = speed * Math.sin(angle);  //
 	}
 	
@@ -27,6 +27,6 @@ public class BoltProjectile extends Projectile {
 	}
 	
 	public void render(Screen screen) {
-		screen.renderProjectile(x, y, this);
+		screen.renderProjectile((int) x - 20, (int) y - 12, this); // Must be cast to int for rendering
 	}
 }

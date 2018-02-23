@@ -13,7 +13,7 @@ public class Level {
 	protected int[] tilesInt; // Store tile id's
 	protected int[] tiles;  // Store pixel colors used to generate tiles
 	
-	private List<Entity> entities = new ArrayList<>();
+	private List<Entity> entities = new ArrayList<>();  // Store entities in the current level
 	
 	public static Level spawn = new SpawnLevel("/levels/spawn.png");
 
