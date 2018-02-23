@@ -16,7 +16,7 @@ public abstract class Mob extends Entity {
 	protected List<Projectile> projectiles = new ArrayList<>();
 	
 	public void move(int xa, int ya) {
-		
+		System.out.println("Projectiles: " + projectiles.size());
 		// Fixes sliding when in a collision
 		if (xa != 0 && ya != 0) {
 			move(xa, 0);
@@ -43,7 +43,7 @@ public abstract class Mob extends Entity {
 		//direction *= 180 / Math.PI;  // Convert to degrees
 		Projectile p = new BoltProjectile(x, y, direction);
 		projectiles.add(p);
-		level.add(p);
+		level.addEntity(p);
 	}
 	
 	public boolean collision(int xa, int ya) {
@@ -60,5 +60,4 @@ public abstract class Mob extends Entity {
 	public void render() {
 		
 	}
-	
 }

@@ -40,6 +40,8 @@ public class Level {
 	public void update() {
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).update();
+			
+			System.out.println("Entities count after shoot: " + entities.size());
 		}
 	}
 	
@@ -51,8 +53,7 @@ public class Level {
 		screen.setOffset(xScroll, yScroll);
 		// Define corner pins (render region); convert to tile precision
 		int x0 = xScroll >> 4;
-		// TODO: future-proof the width and height 16's
-		int x1 = (xScroll + screen.width + 16) >> 4;
+		int x1 = (xScroll + screen.width + 16) >> 4;  // TODO: future-proof the width and height 16's
 		int y0 = yScroll >> 4;
 		int y1 = (yScroll + screen.height + 16) >> 4;
 		
@@ -67,7 +68,7 @@ public class Level {
 		}
 	}
 	
-	public void add(Entity e) {
+	public void addEntity(Entity e) {
 		entities.add(e);
 	}
 	
@@ -83,6 +84,10 @@ public class Level {
 		if (tiles[x + y * width] == Tile.colorSpawnMediumWater) return Tile.spawnMediumWater;
 		return Tile.voidTile;
 		
+	}
+	
+	public List<Entity> getEntities() {
+		return entities;
 	}
 }
 

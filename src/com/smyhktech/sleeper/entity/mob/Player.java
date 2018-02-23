@@ -1,6 +1,7 @@
 package com.smyhktech.sleeper.entity.mob;
 
 import com.smyhktech.sleeper.GameMain;
+import com.smyhktech.sleeper.entity.projectile.Projectile;
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.graphics.Sprite;
 import com.smyhktech.sleeper.input.Keyboard;
@@ -47,6 +48,7 @@ public class Player extends Mob {
 			walking = false;
 		}
 		
+		clear();
 		updateShooting();
 	}
 	
@@ -56,6 +58,19 @@ public class Player extends Mob {
 			double dy = Mouse.getY() - GameMain.getWindowHeight() / 2;
 			double dir = Math.atan2(dy, dx); // calculate direction using tangent
 			shoot(x, y, dir);
+		}
+	}
+	
+	// Move to updateShootin() method??
+	private void clear() {
+		for (int i = 0; i < projectiles.size(); i++) {
+			Projectile p = projectiles.get(i);
+			if (p.isRemoved()) {
+				if (level.getEntities().get(i) == projectiles.get(i)) {
+					projectiles.remove(i);
+					level.getEntities().remove(i);
+				}
+			}
 		}
 	}
 

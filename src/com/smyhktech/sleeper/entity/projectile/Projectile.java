@@ -10,6 +10,7 @@ public abstract class Projectile extends Entity {
 	protected Sprite sprite;
 	protected double x, y;  // Overrides Entity x, y; used for precision math
 	protected double nx, ny;  // New x,y
+	protected double distance;  // From origin
 	protected double speed, rateOfFire, range, damage;
 	
 	public Projectile(int x, int y, double dir) {
