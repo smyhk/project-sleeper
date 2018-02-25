@@ -40,13 +40,22 @@ public class Level {
 	public void update() {
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).update();
-			
-			System.out.println("Entities count after shoot: " + entities.size());
 		}
 	}
 	
 	private void time() {
 		
+	}
+	
+	public boolean tilecollision(double x, double y, double nx, double ny, int size) {
+		boolean solid = false;
+		// Tests for any corner being a solid tile
+		for (int c = 0; c < 4; c++) {
+			int xt = (((int) x + (int) nx) + c % 2 * size * 2 - 12) / 16;
+			int yt = (((int) y + (int) ny) + c / 2 * size + 2) / 16;
+			if (getTile(xt, yt).solid()) solid = true; // Convert to tile precision (from pixel)
+		}
+		return solid;
 	}
 	
 	public void render(int xScroll, int yScroll, Screen screen) {
@@ -70,6 +79,7 @@ public class Level {
 	
 	public void addEntity(Entity e) {
 		entities.add(e);
+		e.init(this);
 	}
 	
 	public Tile getTile(int x, int y) {

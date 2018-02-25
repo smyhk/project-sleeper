@@ -9,6 +9,7 @@ public class Sprite {
 
 	public int size;
 	private int x, y;
+	private int width, height;
 	public int[] pixels;
 	
 	// Map tile sprites
@@ -47,6 +48,8 @@ public class Sprite {
 
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		this.size = size;
+		this.width = size;
+		this.height = size;
 		pixels = new int[size * size];
 		// target coordinates for sprite in sprite sheet
 		this.x = x * size;
@@ -56,17 +59,35 @@ public class Sprite {
 		loadSprite();
 	}
 	
+	public Sprite(int width, int height, int color) {
+		size = -1;
+		this.width = width;
+		this.height = height;
+		pixels = new int[width * height];
+		setColor(color);
+	}
+	
 	// Constructor for void sprite
 	public Sprite(int size, int color) {
 		this.size = size;
+		this.width = size;
+		this.height = size;
 		pixels = new int[size * size];
 		setColor(color);
 	}
 	
 	private void setColor(int color) {
-		for (int i = 0; i < size * size; i++) {
+		for (int i = 0; i < width * height; i++) {
 			pixels[i] = color;
 		}
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
 	}
 
 	private void loadSprite() {

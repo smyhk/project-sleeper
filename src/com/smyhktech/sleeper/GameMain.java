@@ -8,11 +8,13 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
 import com.smyhktech.sleeper.entity.mob.Player;
 import com.smyhktech.sleeper.graphics.Screen;
+import com.smyhktech.sleeper.graphics.Sprite;
 import com.smyhktech.sleeper.input.Keyboard;
 import com.smyhktech.sleeper.input.Mouse;
 import com.smyhktech.sleeper.level.Level;
@@ -32,9 +34,9 @@ public class GameMain extends Canvas implements Runnable {
 	private Keyboard key;
 	private Level level;
 	private Player player;
-	private boolean running = false;
-	
 	private Screen screen;
+	
+	private boolean running = false;
 	
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Placeholder for drawing images
 	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();		  // Draws on the placeholder
@@ -141,6 +143,14 @@ public class GameMain extends Canvas implements Runnable {
 		int yScroll = player.y - screen.height / 2;
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
+		
+		Sprite sprite = new Sprite(2, 2, 0xffffff);
+		Random random = new Random();
+		for (int i = 0 ;i < 100; i++) {
+			int x = random.nextInt(20);
+			int y = random.nextInt(20);
+			screen.renderSprite(width - 60 + x, 50 + y, sprite, true);			
+		}
 		
 		// Copies pixel array from Screen class to this
 		for (int i = 0; i < pixels.length; i++) {

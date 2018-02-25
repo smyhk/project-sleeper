@@ -66,7 +66,7 @@ public class Player extends Mob {
 		}
 	}
 	
-	// Move to updateShootin() method??
+	// Move to updateShooting() method??
 	private void clear() {
 		for (int i = 0; i < projectiles.size(); i++) {
 			Projectile p = projectiles.get(i);

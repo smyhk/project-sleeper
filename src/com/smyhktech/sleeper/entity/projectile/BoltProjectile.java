@@ -22,14 +22,16 @@ public class BoltProjectile extends Projectile {
 	}
 	
 	public void update() {
+		if (level.tilecollision(x, y, nx, ny, 8)) remove();
+		
 		move();
 	}
 	
 	protected void move() {
 		x += nx;
 		y += ny;
-		
-		if (calculateDistance() > range) remove();  // Remove the bolt when range exceeded
+
+		if (calculateDistance() > range) remove(); // Remove the bolt when range exceeded
 	}
 	
 	private double calculateDistance() {
@@ -39,6 +41,6 @@ public class BoltProjectile extends Projectile {
 	}
 
 	public void render(Screen screen) {
-		screen.renderProjectile((int) x - 20, (int) y - 12, this); // Must be cast to int for rendering
+		screen.renderProjectile((int) x - 10, (int) y - 6, this); // Must be cast to int for rendering
 	}
 }

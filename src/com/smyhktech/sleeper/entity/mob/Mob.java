@@ -16,7 +16,6 @@ public abstract class Mob extends Entity {
 	protected List<Projectile> projectiles = new ArrayList<>();
 	
 	public void move(int xa, int ya) {
-		System.out.println("Projectiles: " + projectiles.size());
 		// Fixes sliding when in a collision
 		if (xa != 0 && ya != 0) {
 			move(xa, 0);
