@@ -2,7 +2,6 @@ package com.smyhktech.sleeper.entity.mob;
 
 import com.smyhktech.sleeper.GameMain;
 import com.smyhktech.sleeper.entity.projectile.BoltProjectile;
-import com.smyhktech.sleeper.entity.projectile.Projectile;
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.graphics.Sprite;
 import com.smyhktech.sleeper.input.Keyboard;
@@ -52,7 +51,7 @@ public class Player extends Mob {
 			walking = false;
 		}
 		
-		clear();
+		//clear();
 		updateShooting();
 	}
 	
@@ -67,17 +66,17 @@ public class Player extends Mob {
 	}
 	
 	// Move to updateShooting() method??
-	private void clear() {
-		for (int i = 0; i < projectiles.size(); i++) {
-			Projectile p = projectiles.get(i);
-			if (p.isRemoved()) {
-				if (level.getProjectiles().get(i) == projectiles.get(i)) {
-					projectiles.remove(i);
-					level.getProjectiles().remove(i);
-				}
-			}
-		}
-	}
+//	private void clear() {
+//		for (int i = 0; i < projectiles.size(); i++) {
+//			Projectile p = projectiles.get(i);
+//			if (p.isRemoved()) {
+//				if (level.getProjectiles().get(i) == projectiles.get(i)) {
+//					projectiles.remove(i);
+//					level.getProjectiles().remove(i);
+//				}
+//			}
+//		}
+//	}
 
 	public void render(Screen screen) {
 		if (dir == 0) {

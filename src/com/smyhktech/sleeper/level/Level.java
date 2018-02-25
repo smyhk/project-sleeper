@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.smyhktech.sleeper.entity.Entity;
-import com.smyhktech.sleeper.entity.Spawner;
 import com.smyhktech.sleeper.entity.particle.Particle;
 import com.smyhktech.sleeper.entity.projectile.Projectile;
+import com.smyhktech.sleeper.entity.spawner.Spawner;
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.level.tile.Tile;
 
@@ -32,8 +32,6 @@ public class Level {
 	public Level(String path) {
 		loadLevel(path);
 		generateLevel();
-		
-		addEntity(new Spawner(21 * 16, 59 * 16, Spawner.Type.PARTICLE, 1000, this));
 	}
 
 	protected void generateLevel() {
@@ -53,6 +51,19 @@ public class Level {
 		}
 		for (int i = 0; i < particles.size(); i++) {
 			particles.get(i).update();
+		}
+		remove();
+	}
+	
+	private void remove() {
+		for (int i = 0; i < entities.size(); i++) {
+			if (entities.get(i).isRemoved()) entities.remove(i);
+		}
+		for (int i = 0; i < projectiles.size(); i++) {
+			if (projectiles.get(i).isRemoved()) projectiles.remove(i);
+		}
+		for (int i = 0; i < particles.size(); i++) {
+			if (particles.get(i).isRemoved()) particles.remove(i);
 		}
 	}
 	

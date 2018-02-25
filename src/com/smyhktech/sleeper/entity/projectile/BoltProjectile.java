@@ -1,9 +1,9 @@
 package com.smyhktech.sleeper.entity.projectile;
 
-import static java.lang.Math.sqrt;
 import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 
-import com.smyhktech.sleeper.entity.particle.Particle;
+import com.smyhktech.sleeper.entity.spawner.ParticleSpawner;
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.graphics.Sprite;
 
@@ -24,8 +24,7 @@ public class BoltProjectile extends Projectile {
 	
 	public void update() {
 		if (level.tilecollision(x, y, nx, ny, 8)) {
-			Particle p = new  Particle((int) x, (int) y, 50);
-			level.addEntity(p);
+			level.addEntity(new ParticleSpawner((int) x, (int) y, 44, 50, level));
 			remove();
 		}
 		move();
