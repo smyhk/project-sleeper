@@ -45,6 +45,9 @@ public class Sprite {
 	
 	// Projectile sprites
 	public static Sprite boltProjectile = new Sprite(16, 0, 0, SpriteSheet.boltProjectile);
+	
+	// Particles
+	public static Sprite particleNormal = new Sprite(3, 0xaaaaaa);
 
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		this.size = size;
