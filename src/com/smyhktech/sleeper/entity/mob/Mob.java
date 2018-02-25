@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.smyhktech.sleeper.entity.Entity;
+import com.smyhktech.sleeper.entity.particle.Particle;
 import com.smyhktech.sleeper.entity.projectile.BoltProjectile;
 import com.smyhktech.sleeper.entity.projectile.Projectile;
 import com.smyhktech.sleeper.graphics.Sprite;

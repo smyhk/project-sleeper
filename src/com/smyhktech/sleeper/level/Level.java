@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.smyhktech.sleeper.entity.Entity;
+import com.smyhktech.sleeper.entity.Spawner;
+import com.smyhktech.sleeper.entity.particle.Particle;
+import com.smyhktech.sleeper.entity.projectile.Projectile;
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.level.tile.Tile;
 
@@ -14,6 +17,8 @@ public class Level {
 	protected int[] tiles;  // Store pixel colors used to generate tiles
 	
 	private List<Entity> entities = new ArrayList<>();  // Store entities in the current level
+	private List<Projectile> projectiles = new ArrayList<>();
+	private List<Particle> particles = new ArrayList<>();
 	
 	public static Level spawn = new SpawnLevel("/levels/spawn.png");
 
@@ -27,6 +32,8 @@ public class Level {
 	public Level(String path) {
 		loadLevel(path);
 		generateLevel();
+		
+		addEntity(new Spawner(21 * 16, 59 * 16, Spawner.Type.PARTICLE, 1000, this));
 	}
 
 	protected void generateLevel() {
@@ -40,6 +47,12 @@ public class Level {
 	public void update() {
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).update();
+		}
+		for (int i = 0; i < projectiles.size(); i++) {
+			projectiles.get(i).update();
+		}
+		for (int i = 0; i < particles.size(); i++) {
+			particles.get(i).update();
 		}
 	}
 	
@@ -75,11 +88,23 @@ public class Level {
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).render(screen);
 		}
+		for (int i = 0; i < projectiles.size(); i++) {
+			projectiles.get(i).render(screen);
+		}
+		for (int i = 0; i < particles.size(); i++) {
+			particles.get(i).render(screen);
+		}
 	}
 	
 	public void addEntity(Entity e) {
-		entities.add(e);
 		e.init(this);
+		if (e instanceof Particle) {
+			particles.add( (Particle) e);
+		} else if (e instanceof Projectile) {
+			projectiles.add((Projectile) e);
+		} else {
+			entities.add(e);
+		}
 	}
 	
 	public Tile getTile(int x, int y) {
@@ -98,6 +123,10 @@ public class Level {
 	
 	public List<Entity> getEntities() {
 		return entities;
+	}
+	
+	public List<Projectile> getProjectiles() {
+		return projectiles;
 	}
 }
 

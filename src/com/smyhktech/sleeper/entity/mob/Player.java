@@ -71,9 +71,9 @@ public class Player extends Mob {
 		for (int i = 0; i < projectiles.size(); i++) {
 			Projectile p = projectiles.get(i);
 			if (p.isRemoved()) {
-				if (level.getEntities().get(i) == projectiles.get(i)) {
+				if (level.getProjectiles().get(i) == projectiles.get(i)) {
 					projectiles.remove(i);
-					level.getEntities().remove(i);
+					level.getProjectiles().remove(i);
 				}
 			}
 		}
