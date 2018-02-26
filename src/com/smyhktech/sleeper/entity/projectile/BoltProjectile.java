@@ -23,7 +23,7 @@ public class BoltProjectile extends Projectile {
 	}
 	
 	public void update() {
-		if (level.tilecollision(x, y, nx, ny, 8)) {
+		if (level.tileCollision((int) (x + nx), (int) (y + ny), 8, 4, 4)) {
 			level.addEntity(new ParticleSpawner((int) x, (int) y, 44, 50, level));
 			remove();
 		}
