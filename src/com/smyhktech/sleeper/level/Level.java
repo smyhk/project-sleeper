@@ -6,7 +6,6 @@ import java.util.List;
 import com.smyhktech.sleeper.entity.Entity;
 import com.smyhktech.sleeper.entity.particle.Particle;
 import com.smyhktech.sleeper.entity.projectile.Projectile;
-import com.smyhktech.sleeper.entity.spawner.Spawner;
 import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.level.tile.Tile;
 

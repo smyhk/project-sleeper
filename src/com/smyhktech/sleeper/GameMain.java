@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 
 import com.smyhktech.sleeper.entity.mob.Player;
 import com.smyhktech.sleeper.graphics.Screen;
-import com.smyhktech.sleeper.graphics.SpriteSheet;
 import com.smyhktech.sleeper.input.Keyboard;
 import com.smyhktech.sleeper.input.Mouse;
 import com.smyhktech.sleeper.level.Level;
