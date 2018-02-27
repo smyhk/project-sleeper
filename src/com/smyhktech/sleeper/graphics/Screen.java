@@ -75,15 +75,15 @@ public class Screen {
 	public void renderTile(int xp, int yp, Tile tile) {
 		xp -= xOffset;
 		yp -= yOffset;
-		for (int y = 0; y < tile.sprite.size; y++) {
+		for (int y = 0; y < tile.sprite.SIZE; y++) {
 			int yAbs = y + yp;
-			for (int x = 0; x < tile.sprite.size; x++) {
+			for (int x = 0; x < tile.sprite.SIZE; x++) {
 				int xAbs = x + xp;
 				
 				// Render only what needs to be seen on the screen
-				if (xAbs < -tile.sprite.size || xAbs >= width || yAbs < 0 || yAbs >= height) break;
+				if (xAbs < -tile.sprite.SIZE || xAbs >= width || yAbs < 0 || yAbs >= height) break;
 				if (xAbs < 0) xAbs = 0; // Prevent crash for partial tiles
-				pixels[xAbs + yAbs * width] = tile.sprite.pixels[x + y * tile.sprite.size];
+				pixels[xAbs + yAbs * width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
 			}
 		}
 	}
@@ -99,7 +99,7 @@ public class Screen {
 				// Render only what needs to be seen on the screen
 				if (xAbs < -p.getSpriteSize() || xAbs >= width || yAbs < 0 || yAbs >= height) break;
 				if (xAbs < 0) xAbs = 0; // Prevent crash for partial tiles
-				int col = p.getSprite().pixels[x + y * p.getSprite().size];
+				int col = p.getSprite().pixels[x + y * p.getSprite().SIZE];
 				if (col != 0xffff00ff) pixels[xAbs + yAbs * width] = col;
 			}
 		}

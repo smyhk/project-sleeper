@@ -143,8 +143,6 @@ public class GameMain extends Canvas implements Runnable {
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
 		
-		screen.renderSheet(40, 40, SpriteSheet.playerDown, false);
-		
 		// Copies pixel array from Screen class to this
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];

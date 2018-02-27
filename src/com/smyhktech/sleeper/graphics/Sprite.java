@@ -5,9 +5,9 @@ package com.smyhktech.sleeper.graphics;
 
 public class Sprite {
 
-	private SpriteSheet sheet;
+	protected SpriteSheet sheet;
 
-	public int size;
+	public final int SIZE;
 	private int x, y;
 	private int width, height;
 	public int[] pixels;
@@ -48,9 +48,19 @@ public class Sprite {
 	
 	// Particles
 	public static Sprite particleNormal = new Sprite(3, 0xaaaaaa);
-
+	
+	// Multiple constructors...
+	protected Sprite(SpriteSheet sheet, int width, int height) {
+		if (width == height) SIZE = width;
+		else SIZE = -1;
+		
+		this.width = width;
+		this.height = height;
+		this.sheet = sheet;
+	}
+	
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
-		this.size = size;
+		SIZE = size;
 		this.width = size;
 		this.height = size;
 		pixels = new int[size * size];
@@ -63,22 +73,29 @@ public class Sprite {
 	}
 	
 	public Sprite(int width, int height, int color) {
-		size = -1;
+		SIZE = -1;
 		this.width = width;
 		this.height = height;
 		pixels = new int[width * height];
 		setColor(color);
 	}
 	
-	// Constructor for void sprite
 	public Sprite(int size, int color) {
-		this.size = size;
+		SIZE = size;
 		this.width = size;
 		this.height = size;
 		pixels = new int[size * size];
 		setColor(color);
 	}
 	
+	public Sprite(int[] pixels, int width, int height) {
+		if (width == height) SIZE = width;
+		else SIZE = -1;
+		this.width = width;
+		this.height = height;
+		this.pixels = pixels;
+	}
+
 	private void setColor(int color) {
 		for (int i = 0; i < width * height; i++) {
 			pixels[i] = color;
@@ -94,9 +111,9 @@ public class Sprite {
 	}
 
 	private void loadSprite() {
-		for (int y = 0; y < size; y++) {
-			for (int x = 0; x < size; x++) {
-				pixels[x + y * size] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
+		for (int y = 0; y < SIZE; y++) {
+			for (int x = 0; x < SIZE; x++) {
+				pixels[x + y * SIZE] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
 			}
 		}
 		
