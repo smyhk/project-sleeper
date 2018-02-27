@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 
 import com.smyhktech.sleeper.entity.mob.Player;
 import com.smyhktech.sleeper.graphics.Screen;
+import com.smyhktech.sleeper.graphics.SpriteSheet;
 import com.smyhktech.sleeper.input.Keyboard;
 import com.smyhktech.sleeper.input.Mouse;
 import com.smyhktech.sleeper.level.Level;
@@ -141,6 +142,8 @@ public class GameMain extends Canvas implements Runnable {
 		int yScroll = player.y - screen.height / 2;
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
+		
+		screen.renderSheet(40, 40, SpriteSheet.playerDown, false);
 		
 		// Copies pixel array from Screen class to this
 		for (int i = 0; i < pixels.length; i++) {
