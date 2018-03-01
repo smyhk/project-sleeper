@@ -12,9 +12,15 @@ import com.smyhktech.sleeper.graphics.Sprite;
 public abstract class Mob extends Entity {
 	
 	protected Sprite sprite;
-	protected int dir = -1;
 	protected boolean moving = false;
 	protected List<Projectile> projectiles = new ArrayList<>();
+	protected boolean walking = false;
+	
+	protected enum Direction {
+		UP, DOWN, LEFT, RIGHT
+	}
+	
+	protected Direction dir;
 	
 	public void move(int xa, int ya) {
 		// Fixes sliding when in a collision
@@ -24,10 +30,10 @@ public abstract class Mob extends Entity {
 			return;
 		}
 		
-		if (xa > 0) dir = 1;  // East; Right
-		if (xa < 0) dir = 3;  // West; Left
-		if (ya > 0) dir = 2;  // South; Down
-		if (ya < 0) dir = 0;  // North; Up
+		if (xa > 0) dir = Direction.RIGHT;  // East; Right
+		if (xa < 0) dir = Direction.LEFT;  // West; Left
+		if (ya > 0) dir = Direction.DOWN;  // South; Down
+		if (ya < 0) dir = Direction.UP;  // North; Up
 		
 		if (!collision(xa, ya)) {
 			x += xa;

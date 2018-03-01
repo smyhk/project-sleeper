@@ -49,6 +49,9 @@ public class Sprite {
 	// Particles
 	public static Sprite particleNormal = new Sprite(3, 0xaaaaaa);
 	
+	// NPC sprite
+	public static Sprite dummy = new Sprite(32, 0, 0, SpriteSheet.dummyUp);
+	
 	// Multiple constructors...
 	protected Sprite(SpriteSheet sheet, int width, int height) {
 		if (width == height) SIZE = width;
@@ -111,9 +114,9 @@ public class Sprite {
 	}
 
 	private void loadSprite() {
-		for (int y = 0; y < SIZE; y++) {
-			for (int x = 0; x < SIZE; x++) {
-				pixels[x + y * SIZE] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				pixels[x + y * width] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.WIDTH];
 			}
 		}
 		

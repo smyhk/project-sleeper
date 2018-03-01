@@ -13,8 +13,7 @@ public class Player extends Mob {
 	
 	private Keyboard input;
 	private Sprite sprite;
-	private int animate = 0;  // Animation counter
-	private boolean walking = false;
+	//private int animate = 0;  // Animation counter
 	private int fireRate;
 	
 	private AnimatedSprite down = new AnimatedSprite(SpriteSheet.playerDown, 32, 32, 3);
@@ -22,14 +21,14 @@ public class Player extends Mob {
 	private AnimatedSprite left = new AnimatedSprite(SpriteSheet.playerLeft, 32, 32, 3);
 	private AnimatedSprite right = new AnimatedSprite(SpriteSheet.playerRight, 32, 32, 3);
 	
-	private AnimatedSprite currentSpites;
+	private AnimatedSprite currentSprites;
 	
 	public static int pixelSize = 32;
 	
 	public Player(Keyboard input) {
 		this.input = input;
 		sprite = Sprite.playerBack0;  // Set an initial direction for the player sprite
-		currentSpites = down;
+		currentSprites = down;
 	}
 
 	public Player(int x, int y, Keyboard input) {
@@ -37,35 +36,35 @@ public class Player extends Mob {
 		this.y = y;
 		this.input = input;
 		sprite = Sprite.playerBack0;  // Set an initial direction for the player sprite
-		currentSpites = down;
+		currentSprites = down;
 		fireRate = BoltProjectile.getRateOfFire();
 	}
 	
 	public void update() {
-		if (walking) currentSpites.update();
-		else currentSpites.setFrame(0);
+		if (walking) currentSprites.update();
+		else currentSprites.setFrame(0);
 		if (fireRate > 0) fireRate--;
 		int xa = 0, ya = 0;  // Direction of movement
 		
-		if (animate < 7500) {
-			animate++;
-		} else {
-			animate = 0;
-		}
+//		if (animate < 7500) {
+//			animate++;
+//		} else {
+//			animate = 0;
+//		}
 		
 		if (input.up) {
 			ya--;
-			currentSpites = up;
+			currentSprites = up;
 		} else if (input.down) {
 			ya++;
-			currentSpites = down;
+			currentSprites = down;
 		}
 		if (input.left) {
 			xa--;
-			currentSpites = left;
+			currentSprites = left;
 		} else if (input.right) {
 			xa++;
-			currentSpites = right;
+			currentSprites = right;
 		}
 		
 		if (xa != 0 || ya != 0) {
@@ -89,7 +88,7 @@ public class Player extends Mob {
 	}
 
 	public void render(Screen screen) {
-		sprite = currentSpites.getSprite();
+		sprite = currentSprites.getSprite();
 		screen.renderMob(x - 16, y - 16, sprite);
 	}
 }
