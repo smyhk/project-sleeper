@@ -81,7 +81,6 @@ public class GameMain extends Canvas implements Runnable {
 		try {
 			gameThread.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
