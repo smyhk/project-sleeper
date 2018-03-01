@@ -6,6 +6,7 @@ import java.util.List;
 import com.smyhktech.sleeper.entity.Entity;
 import com.smyhktech.sleeper.entity.projectile.BoltProjectile;
 import com.smyhktech.sleeper.entity.projectile.Projectile;
+import com.smyhktech.sleeper.graphics.Screen;
 import com.smyhktech.sleeper.graphics.Sprite;
 
 public abstract class Mob extends Entity {
@@ -34,9 +35,9 @@ public abstract class Mob extends Entity {
 		}
 	}
 	
-	public void update() {
-		
-	}
+	public abstract void update();
+
+	public abstract void render(Screen screen);
 	
 	protected void shoot(int x, int y, double direction) {
 		//direction *= 180 / Math.PI;  // Convert to degrees
@@ -54,9 +55,5 @@ public abstract class Mob extends Entity {
 			if (level.getTile(xt, yt).solid()) solid = true; // Convert to tile precision (from pixel)
 		}
 		return solid;
-	}
-	
-	public void render() {
-		
 	}
 }

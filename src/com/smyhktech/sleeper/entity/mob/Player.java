@@ -75,7 +75,6 @@ public class Player extends Mob {
 			walking = false;
 		}
 		
-		//clear();
 		updateShooting();
 	}
 	
@@ -88,62 +87,9 @@ public class Player extends Mob {
 			fireRate = BoltProjectile.getRateOfFire();
 		}
 	}
-	
-	// Move to updateShooting() method??
-//	private void clear() {
-//		for (int i = 0; i < projectiles.size(); i++) {
-//			Projectile p = projectiles.get(i);
-//			if (p.isRemoved()) {
-//				if (level.getProjectiles().get(i) == projectiles.get(i)) {
-//					projectiles.remove(i);
-//					level.getProjectiles().remove(i);
-//				}
-//			}
-//		}
-//	}
 
 	public void render(Screen screen) {
-//		if (dir == 0) {
-//			sprite = Sprite.playerForward6;
-//			if (walking) {
-//				if (animate % 20 > 10) {
-//					sprite = Sprite.playerForward7;
-//				} else {
-//					sprite = Sprite.playerForward8;
-//				}
-//			}
-//		}
-//		if (dir == 1) {
-//			sprite = Sprite.playerRight3;
-//			if (walking) {
-//				if (animate % 20 > 10) {
-//					sprite = Sprite.playerRight4;
-//				} else {
-//					sprite = Sprite.playerRight5;
-//				}
-//			}
-//		}
-//		if (dir == 2) {
-//			sprite = Sprite.playerBack0;
-//			if (walking) {
-//				if (animate % 20 > 10) {
-//					sprite = Sprite.playerBack1;
-//				} else {
-//					sprite = Sprite.playerBack2;
-//				}
-//			}
-//		}
-//		if (dir == 3) {
-//			sprite = Sprite.playerLeft9;
-//			if (walking) {
-//				if (animate % 20 > 10) {
-//					sprite = Sprite.playerLeft10;
-//				} else {
-//					sprite = Sprite.playerLeft11;
-//				}
-//			}
-//		}
 		sprite = currentSpites.getSprite();
-		screen.renderPlayer(x - 16, y - 16, sprite);
+		screen.renderMob(x - 16, y - 16, sprite);
 	}
 }
